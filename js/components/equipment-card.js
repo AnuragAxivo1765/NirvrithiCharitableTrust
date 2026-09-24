@@ -22,25 +22,20 @@ const EQUIPMENT_ICONS = {
  * @returns {string} HTML string
  */
 function renderEquipmentCard(item) {
+  if (item.disabled) return '';
   const icon = EQUIPMENT_ICONS[item.category] || EQUIPMENT_ICONS['Medical'];
+  
   const availClass = item.available ? 'available' : 'unavailable';
   const availLabel = item.available ? 'Available' : 'Currently Unavailable';
-  const unitText  = item.available
-    ? `${String(item.availableUnits).padStart(2, '0')} of ${item.totalUnits}`
-    : '00';
+  const unitText   = item.available ? `${String(item.availableUnits).padStart(2, '0')} of ${item.totalUnits}` : '00';
 
   return `
-<article class="equipment-card" data-category="${item.category}" data-available="${item.available}" aria-label="${item.name}">
+<article class="equipment-card" data-category="${item.category}" data-available="${item.available ? 'true' : 'false'}" aria-label="${item.name}">
 
   <!-- Equipment Image / Placeholder -->
   <div class="equipment-card__img-wrap">
     <div class="equipment-card__img-placeholder" aria-hidden="true">
       <div class="equipment-card__icon">${icon}</div>
-      <!--
-        IMAGE PLACEHOLDER
-        Replace with: <img src="${item.image}" alt="${item.name}" loading="lazy">
-        and remove this placeholder div.
-      -->
     </div>
     <span class="equipment-card__category">${item.category}</span>
   </div>
@@ -74,7 +69,8 @@ function renderEquipmentCard(item) {
  */
 function renderEquipmentGrid(items, container, animate = true) {
   if (!container) return;
-  container.innerHTML = items.map((item, i) => {
+  const activeItems = items.filter(item => !item.disabled);
+  container.innerHTML = activeItems.map((item, i) => {
     const card = renderEquipmentCard(item);
     if (animate) {
       // Wrap with animation div

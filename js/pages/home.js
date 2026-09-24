@@ -14,7 +14,7 @@
     const equipContainer = document.getElementById('equipment-preview-grid');
     if (equipContainer && typeof EQUIPMENT_DATA !== 'undefined') {
       const featured = EQUIPMENT_DATA
-        .filter(e => e.featured)
+        .filter(e => e.featured && !e.disabled)
         .sort((a, b) => a.sortOrder - b.sortOrder);
       renderEquipmentGrid(featured, equipContainer, true);
     }

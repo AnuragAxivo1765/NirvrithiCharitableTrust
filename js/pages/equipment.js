@@ -18,8 +18,8 @@
     /* ── Build filter buttons ─────────────────── */
     if (filterBar) {
       const filters = [
-        { id: 'all',       label: 'All Equipment' },
-        { id: 'available', label: 'Available' },
+        { id: 'all',         label: 'All Equipment' },
+        { id: 'available',   label: 'Available' },
         { id: 'unavailable', label: 'Unavailable' },
         ...EQUIPMENT_CATEGORIES.map(cat => ({ id: cat, label: cat }))
       ];
@@ -49,13 +49,13 @@
     function renderFiltered() {
       let filtered;
       if (activeFilter === 'all') {
-        filtered = [...EQUIPMENT_DATA];
+        filtered = EQUIPMENT_DATA.filter(e => !e.disabled);
       } else if (activeFilter === 'available') {
-        filtered = EQUIPMENT_DATA.filter(e => e.available);
+        filtered = EQUIPMENT_DATA.filter(e => e.available && !e.disabled);
       } else if (activeFilter === 'unavailable') {
-        filtered = EQUIPMENT_DATA.filter(e => !e.available);
+        filtered = EQUIPMENT_DATA.filter(e => !e.available && !e.disabled);
       } else {
-        filtered = EQUIPMENT_DATA.filter(e => e.category === activeFilter);
+        filtered = EQUIPMENT_DATA.filter(e => e.category === activeFilter && !e.disabled);
       }
 
       filtered.sort((a, b) => a.sortOrder - b.sortOrder);

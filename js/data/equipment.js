@@ -23,175 +23,244 @@
 
 /* global EQUIPMENT_DATA */
 const EQUIPMENT_DATA = [
-  {
-    id: "hospital-bed",
-    name: "Hospital Bed",
-    description: "Adjustable hospital-grade bed for home-based palliative patient care. Suitable for extended bedrest.",
-    longDesc: "A fully adjustable hospital bed designed for home use. Provides comfort and safety for patients who need to spend extended periods in bed. Features height adjustment and backrest elevation.",
-    image: "assets/images/equipment/hospital-bed.jpg",
-    /* REPLACE image with an actual photograph of the hospital bed */
-    category: "Patient Care",
-    available: true,
-    availableUnits: 3,
-    totalUnits: 5,
-    featured: true,
-    sortOrder: 1
-  },
-  {
-    id: "wheelchair",
-    name: "Wheelchair",
-    description: "Standard wheelchair for patients with limited mobility. Foldable and suitable for indoor and outdoor use.",
-    longDesc: "Sturdy, foldable wheelchair suitable for both indoor and outdoor use. Helps patients maintain independence and mobility during palliative care.",
-    image: "assets/images/equipment/wheelchair.jpg",
-    /* REPLACE image with an actual photograph of the wheelchair */
-    category: "Mobility",
-    available: true,
-    availableUnits: 2,
-    totalUnits: 4,
-    featured: true,
-    sortOrder: 2
-  },
-  {
-    id: "air-mattress",
-    name: "Air Mattress (Pressure Relief)",
-    description: "Anti-decubitus air mattress to prevent bed sores in bedridden patients. Essential for long-term care.",
-    longDesc: "Medical-grade alternating pressure air mattress that prevents pressure ulcers (bed sores) in patients who are bedridden for extended periods.",
-    image: "assets/images/equipment/air-mattress.jpg",
-    /* REPLACE image with an actual photograph of the air mattress */
-    category: "Patient Care",
-    available: true,
-    availableUnits: 4,
-    totalUnits: 6,
-    featured: true,
-    sortOrder: 3
-  },
+  /* ══════════════════════════════════════════════════════════
+     ACTIVE INVENTORY — AVAILABLE (Numbered Items)
+     ══════════════════════════════════════════════════════════ */
   {
     id: "oxygen-concentrator",
     name: "Oxygen Concentrator",
     description: "Provides supplemental oxygen for patients with respiratory conditions. For home-based oxygen therapy.",
-    longDesc: "Portable oxygen concentrator that delivers concentrated oxygen to patients with breathing difficulties. Operates on household electricity, eliminating the need for oxygen cylinders.",
+    longDesc: "Portable oxygen concentrator that delivers concentrated oxygen to patients with breathing difficulties. Operates on household electricity, eliminating the need for heavy oxygen cylinders.",
     image: "assets/images/equipment/oxygen-concentrator.jpg",
-    /* REPLACE image with an actual photograph of the oxygen concentrator */
     category: "Respiratory",
     available: true,
     availableUnits: 1,
-    totalUnits: 3,
+    totalUnits: 1,
+    featured: true,
+    sortOrder: 1
+  },
+  {
+    id: "air-bed",
+    name: "Air Bed (Air Mattress)",
+    description: "Anti-decubitus alternating pressure air mattress to prevent bed sores in bedridden patients.",
+    longDesc: "Medical-grade alternating pressure air mattress that prevents pressure ulcers (bed sores) in patients who are bedridden for extended periods.",
+    image: "assets/images/equipment/air-mattress.jpg",
+    category: "Patient Care",
+    available: true,
+    availableUnits: 2,
+    totalUnits: 2,
+    featured: true,
+    sortOrder: 2
+  },
+  {
+    id: "wheelchair",
+    name: "Wheelchair",
+    description: "Standard foldable wheelchair for patients with limited mobility. Suitable for indoor and outdoor use.",
+    longDesc: "Sturdy, foldable wheelchair suitable for both indoor and outdoor use. Helps patients maintain mobility and independence during palliative care.",
+    image: "assets/images/equipment/wheelchair.jpg",
+    category: "Mobility",
+    available: true,
+    availableUnits: 2,
+    totalUnits: 2,
+    featured: true,
+    sortOrder: 3
+  },
+  {
+    id: "bp-monitor",
+    name: "Blood Pressure Monitor (BP Monitor)",
+    description: "Digital automatic BP monitor for regular, convenient blood pressure monitoring at home.",
+    longDesc: "An automatic digital blood pressure monitor that allows caregivers and patients to regularly monitor blood pressure levels at home.",
+    image: "assets/images/equipment/bp-monitor.jpg",
+    category: "Monitoring",
+    available: true,
+    availableUnits: 2,
+    totalUnits: 2,
     featured: true,
     sortOrder: 4
   },
   {
-    id: "commode-chair",
-    name: "Commode Chair",
-    description: "Portable toilet chair for patients who cannot access the bathroom independently. Adjustable height.",
-    longDesc: "A sturdy commode chair that provides a safe, accessible toilet facility for patients with limited mobility. Adjustable height, removable bucket for easy cleaning.",
-    image: "assets/images/equipment/commode-chair.jpg",
-    /* REPLACE image with an actual photograph of the commode chair */
-    category: "Patient Care",
+    id: "walker",
+    name: "Patient Walker",
+    description: "Four-legged walking frame to assist patients with limited mobility and balance support.",
+    longDesc: "A sturdy four-legged walker that provides stability and support for patients with reduced mobility, preventing falls and encouraging safe movement.",
+    image: "assets/images/equipment/patient-walker.jpg",
+    category: "Mobility",
     available: true,
-    availableUnits: 3,
-    totalUnits: 5,
+    availableUnits: 1,
+    totalUnits: 1,
     featured: true,
     sortOrder: 5
   },
   {
     id: "nebulizer",
     name: "Nebulizer",
-    description: "Converts liquid medication into a fine mist for inhalation. Used for respiratory conditions and airway management.",
+    description: "Converts liquid medication into a fine mist for inhalation. Used for respiratory management.",
     longDesc: "An electrical nebulizer that turns liquid medication into a fine aerosol mist for easy inhalation, ideal for patients with respiratory conditions.",
     image: "assets/images/equipment/nebulizer.jpg",
-    /* REPLACE image with an actual photograph of the nebulizer */
     category: "Respiratory",
     available: true,
-    availableUnits: 2,
-    totalUnits: 3,
+    availableUnits: 1,
+    totalUnits: 1,
     featured: true,
     sortOrder: 6
   },
   {
-    id: "patient-walker",
-    name: "Patient Walker",
-    description: "Four-legged walking frame to assist patients with limited mobility and balance difficulties.",
-    longDesc: "A sturdy four-legged walker that provides stability and support for patients with reduced mobility. Helps prevent falls and encourages safe, independent movement.",
-    image: "assets/images/equipment/patient-walker.jpg",
-    /* REPLACE image with an actual photograph of the patient walker */
-    category: "Mobility",
-    available: false,
-    availableUnits: 0,
-    totalUnits: 2,
-    featured: false,
+    id: "potty-chair",
+    name: "Potty Chair (Commode Chair)",
+    description: "Portable toilet chair with adjustable height for patients who cannot access the bathroom independently.",
+    longDesc: "A sturdy commode chair that provides a safe, accessible toilet facility for patients with limited mobility. Features adjustable height and a removable bucket for easy cleaning.",
+    image: "assets/images/equipment/commode-chair.jpg",
+    category: "Patient Care",
+    available: true,
+    availableUnits: 1,
+    totalUnits: 1,
+    featured: true,
     sortOrder: 7
   },
   {
-    id: "crutches",
-    name: "Crutches",
-    description: "Adjustable underarm crutches for patients recovering from lower limb conditions or surgeries.",
-    longDesc: "Height-adjustable underarm crutches that provide support and weight-bearing assistance for patients with leg injuries or lower limb conditions.",
-    image: "assets/images/equipment/crutches.jpg",
-    /* REPLACE image with an actual photograph of the crutches */
-    category: "Mobility",
+    id: "back-support",
+    name: "Back Support (Bed Rest)",
+    description: "Adjustable back rest providing ergonomic back and neck support for patients resting or eating in bed.",
+    longDesc: "An adjustable multi-angle back support frame that allows bedridden patients to sit upright comfortably for meals, medication, or reading.",
+    image: "assets/images/equipment/back-support.jpg",
+    category: "Patient Care",
     available: true,
-    availableUnits: 5,
-    totalUnits: 6,
+    availableUnits: 1,
+    totalUnits: 1,
     featured: false,
     sortOrder: 8
   },
   {
-    id: "suction-machine",
-    name: "Suction Machine",
-    description: "Medical suction device for airway clearance in patients who cannot clear secretions independently.",
-    longDesc: "A portable electric suction machine used to clear the airway of patients who cannot cough or swallow effectively. An essential device in advanced palliative care.",
-    image: "assets/images/equipment/suction-machine.jpg",
-    /* REPLACE image with an actual photograph of the suction machine */
-    category: "Medical",
-    available: false,
-    availableUnits: 0,
-    totalUnits: 2,
+    id: "semi-bed",
+    name: "Semi Bed",
+    description: "Semi-adjustable patient care bed for comfortable home-based palliative nursing.",
+    longDesc: "A semi-adjustable medical patient bed designed to support palliative care at home, making daily patient repositioning and nursing care manageable.",
+    image: "assets/images/equipment/semi-bed.jpg",
+    category: "Patient Care",
+    available: true,
+    availableUnits: 1,
+    totalUnits: 1,
     featured: false,
     sortOrder: 9
   },
+
+  /* ══════════════════════════════════════════════════════════
+     ACTIVE INVENTORY — CURRENTLY UNAVAILABLE (Unnumbered Items)
+     ══════════════════════════════════════════════════════════ */
   {
-    id: "bp-monitor",
-    name: "Blood Pressure Monitor",
-    description: "Digital BP monitor for regular monitoring of blood pressure at home. Easy to use.",
-    longDesc: "An automatic digital blood pressure monitor that allows caregivers and patients to regularly monitor blood pressure levels at home without needing clinic visits.",
-    image: "assets/images/equipment/bp-monitor.jpg",
-    /* REPLACE image with an actual photograph of the BP monitor */
-    category: "Monitoring",
-    available: true,
-    availableUnits: 2,
-    totalUnits: 3,
+    id: "semi-fowler-bed",
+    name: "Semi Fowler Bed",
+    description: "Specialized multi-position hospital bed with backrest elevation for palliative nursing.",
+    longDesc: "Hospital-grade semi-fowler bed equipped with smooth mechanical backrest adjustment, side safety rails, and durable mattress support.",
+    image: "assets/images/equipment/semi-fowler-bed.jpg",
+    category: "Patient Care",
+    available: false,
+    availableUnits: 0,
+    totalUnits: 1,
     featured: false,
     sortOrder: 10
   },
   {
-    id: "pulse-oximeter",
-    name: "Pulse Oximeter",
-    description: "Fingertip device to measure blood oxygen saturation and pulse rate. Useful for respiratory monitoring.",
-    longDesc: "A non-invasive fingertip pulse oximeter that measures blood oxygen saturation (SpO2) and pulse rate. Particularly important for patients with respiratory conditions.",
-    image: "assets/images/equipment/pulse-oximeter.jpg",
-    /* REPLACE image with an actual photograph of the pulse oximeter */
-    category: "Monitoring",
+    id: "semi-fowler-cot",
+    name: "Semi Fowler Cot",
+    description: "Metal patient cot with reclining back elevation mechanism for home recovery.",
+    longDesc: "Sturdy metal palliative care cot with adjustable semi-fowler elevation, designed for compact home spaces and long-term comfort.",
+    image: "assets/images/equipment/semi-fowler-cot.jpg",
+    category: "Patient Care",
     available: false,
     availableUnits: 0,
-    totalUnits: 2,
+    totalUnits: 1,
     featured: false,
     sortOrder: 11
   },
   {
-    id: "wheelchair-ramp",
-    name: "Wheelchair Ramp",
-    description: "Portable ramp to help wheelchair users access raised surfaces, doorways, and vehicles.",
-    longDesc: "A lightweight, portable folding wheelchair ramp that enables wheelchair users to safely navigate steps, doorways, and vehicle access. Can be placed at the entrance of homes.",
-    image: "assets/images/equipment/wheelchair-ramp.jpg",
-    /* REPLACE image with an actual photograph of the wheelchair ramp */
+    id: "walking-stick",
+    name: "Walking Stick",
+    description: "Height-adjustable walking stick with ergonomic handle and anti-slip rubber tip.",
+    longDesc: "Lightweight, height-adjustable supportive cane designed to provide stability, confidence, and gentle balance support for walking.",
+    image: "assets/images/equipment/walking-stick.jpg",
     category: "Mobility",
     available: false,
     availableUnits: 0,
     totalUnits: 1,
     featured: false,
     sortOrder: 12
+  },
+
+  /* ══════════════════════════════════════════════════════════
+     DISABLED ITEMS (Not Mentioned in Current Inventory)
+     ══════════════════════════════════════════════════════════ */
+  {
+    id: "hospital-bed",
+    name: "Standard Hospital Bed",
+    description: "Standard hospital bed. Currently disabled / superseded by Semi Fowler beds.",
+    longDesc: "Standard hospital-grade bed for home care.",
+    image: "assets/images/equipment/hospital-bed.jpg",
+    category: "Patient Care",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 20
+  },
+  {
+    id: "crutches",
+    name: "Crutches",
+    description: "Adjustable underarm crutches for lower-limb support. Currently disabled / not in active inventory.",
+    longDesc: "Height-adjustable underarm crutches that provide weight-bearing assistance for lower limb injuries.",
+    image: "assets/images/equipment/crutches.jpg",
+    category: "Mobility",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 21
+  },
+  {
+    id: "suction-machine",
+    name: "Suction Machine",
+    description: "Medical suction device for airway clearance. Currently disabled / not in active inventory.",
+    longDesc: "A portable electric suction machine used to clear secretions from patient airways.",
+    image: "assets/images/equipment/suction-machine.jpg",
+    category: "Medical",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 22
+  },
+  {
+    id: "pulse-oximeter",
+    name: "Pulse Oximeter",
+    description: "Fingertip blood oxygen saturation monitor. Currently disabled / not in active inventory.",
+    longDesc: "A non-invasive fingertip pulse oximeter that measures blood oxygen saturation and pulse rate.",
+    image: "assets/images/equipment/pulse-oximeter.jpg",
+    category: "Monitoring",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 23
+  },
+  {
+    id: "wheelchair-ramp",
+    name: "Wheelchair Ramp",
+    description: "Portable folding ramp for wheelchair access. Currently disabled / not in active inventory.",
+    longDesc: "A lightweight folding wheelchair ramp to assist navigation over doorsteps and curbs.",
+    image: "assets/images/equipment/wheelchair-ramp.jpg",
+    category: "Mobility",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 24
   }
 ];
 
 /* Derived helpers — used by filter components */
-const EQUIPMENT_CATEGORIES = [...new Set(EQUIPMENT_DATA.map(e => e.category))].sort();
+const EQUIPMENT_CATEGORIES = [...new Set(EQUIPMENT_DATA.filter(e => !e.disabled).map(e => e.category))].sort();

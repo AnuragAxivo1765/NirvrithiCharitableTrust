@@ -537,6 +537,12 @@
   border-color: var(--clr-unavailable-border);
 }
 
+.availability-badge--disabled {
+  background: #f4f4f5;
+  color: #71717a;
+  border-color: #d4d4d8;
+}
+
 .availability-badge__dot {
   width: 7px;
   height: 7px;
@@ -552,6 +558,10 @@
 
 .availability-badge--unavailable .availability-badge__dot {
   background: var(--clr-unavailable);
+}
+
+.availability-badge--disabled .availability-badge__dot {
+  background: #a1a1aa;
 }
 
 @keyframes pulse-green {
@@ -647,6 +657,34 @@
   letter-spacing: var(--ls-wide);
   border-radius: var(--radius-full);
   border: 1px solid var(--clr-border);
+}
+
+.equipment-card__disabled-pill {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  padding: 3px 9px;
+  background: #71717a;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-xs);
+}
+
+.equipment-card--disabled {
+  opacity: 0.65;
+  filter: grayscale(0.4);
+  background: #faf9f6;
+  border-style: dashed;
+}
+
+.equipment-card--disabled:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--clr-border-soft);
 }
 
 /* Card Body */

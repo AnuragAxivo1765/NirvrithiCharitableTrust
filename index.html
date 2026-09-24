@@ -28,8 +28,8 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/tokens.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/components.css?v=1.1" />
+  <link rel="stylesheet" href="css/pages.css?v=1.1" />
 </head>
 
 <body>
@@ -45,11 +45,12 @@
     <section class="hero" id="home" aria-label="Hero — Nirvrithi Charitable Trust">
       <div class="hero__inner container">
 
-        <!-- Left: Content -->
+        <!-- Center: Content -->
         <div class="hero__content">
           <div class="hero__eyebrow">
             <span class="hero__eyebrow-line"></span>
             Palliative Care Support · Mannancherry, Alapuzha
+            <span class="hero__eyebrow-line"></span>
           </div>
 
           <h1 class="hero__title">
@@ -87,52 +88,10 @@
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
-            <span>Registered Charitable Trust &nbsp;·&nbsp; Reg. No: ALP-58/2026 &nbsp;·&nbsp; Since 2020</span>
+            <span>Registered Charitable Trust &nbsp;·&nbsp; Reg. No: ALP-58/2026 &nbsp;·&nbsp; Since 2020 &nbsp;·&nbsp; <a href="assets/Docs/NirvrithiCharitableTrust.pdf" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:2px;font-weight:600;">Trust Deed (PDF) ↗</a></span>
           </div>
         </div>
 
-        <!-- Right: Visual -->
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__img-frame">
-            <!--
-            HERO IMAGE PLACEHOLDER
-            Replace this div with an authentic photograph representing
-            palliative care, the hospice, or community support.
-            Recommended size: 960 × 1200px (portrait 4:5)
-
-            Example:
-            <img src="assets/images/hero.jpg"
-                 alt="Volunteers at Pookoya Thangal Hospice supporting palliative care patients"
-                 width="480" height="600"
-                 loading="eager"
-                 fetchpriority="high">
-          -->
-            <div class="hero__img-placeholder">
-              <div class="hero__img-placeholder-icon">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              </div>
-              <p class="hero__img-placeholder-text">
-                Compassionate palliative care for your community
-              </p>
-              <div class="hero__stats">
-                <div class="hero__stat-pill">
-                  <span class="hero__stat-dot"></span>
-                  <span>Equipment Available</span>
-                </div>
-                <div class="hero__stat-pill">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--clr-primary)" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" />
-                  </svg>
-                  <span>Since Aug 2020</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Scroll indicator -->
@@ -220,6 +179,19 @@
             <strong>Pookoya Thangal Hospice (PTH)</strong> is an initiative of the
             <strong>IUML Kerala State Committee</strong>, established on 15 August 2020,
             and is operated by Nirvrithi Charitable Trust, Mannancherry.
+          </div>
+
+          <div class="about__doc-cta" style="margin-top: var(--sp-4);">
+            <a href="assets/Docs/NirvrithiCharitableTrust.pdf" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm" style="display:inline-flex;align-items:center;gap:8px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              <span>View Official Trust Deed &amp; Bye-laws</span>
+              <span class="nav__doc-badge" style="font-size:10px;">PDF ↗</span>
+            </a>
           </div>
         </div>
 
@@ -576,8 +548,8 @@
   <!-- Utilities -->
   <script src="js/utils/animations.js"></script>
   <!-- Components -->
-  <script src="js/components/navbar.js"></script>
-  <script src="js/components/footer.js"></script>
+  <script src="js/components/navbar.js?v=1.2"></script>
+  <script src="js/components/footer.js?v=1.1"></script>
   <script src="js/components/equipment-card.js"></script>
   <script src="js/components/news-card.js"></script>
   <script src="js/components/gallery-grid.js"></script>

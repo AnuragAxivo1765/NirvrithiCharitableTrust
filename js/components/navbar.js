@@ -22,21 +22,60 @@
   }
 
   const NAV_LINKS = [
-    { id: 'home',      label: 'Home',          href: 'index.html' },
-    { id: 'equipment', label: 'Equipment',     href: 'equipment.html' },
-    { id: 'news',      label: 'News & Events', href: 'news.html' },
-    { id: 'gallery',   label: 'Gallery',       href: 'gallery.html' },
-    { id: 'donate',    label: 'Donate',        href: 'index.html#donate' },
-    { id: 'contact',   label: 'Contact',       href: 'index.html#contact' },
+    { id: 'home',       label: 'Home',          href: 'index.html' },
+    { id: 'about',      label: 'About',         href: 'index.html#about' },
+    { id: 'equipment',  label: 'Equipment',     href: 'equipment.html' },
+    { id: 'news',       label: 'News & Events', href: 'news.html' },
+    { id: 'gallery',    label: 'Gallery',       href: 'gallery.html' },
+    { id: 'contact',    label: 'Contact',       href: 'index.html#contact' },
+    { id: 'donate',     label: 'Donate',        href: 'index.html#donate', isCta: true },
   ];
 
   /* ── Template ─────────────────────────────────── */
   function buildNavHTML(activePage) {
-    const links = NAV_LINKS.map(link => {
+    const desktopLinks = NAV_LINKS.map(link => {
       const isActive = link.id === activePage;
+
+      if (link.isCta) {
+        return `<li>
+          <a href="${link.href}"
+             class="nav__link nav__link--donate"
+             aria-label="Make a Donation to Nirvrithi Charitable Trust">
+            <svg class="nav__donate-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>${link.label}</span>
+          </a>
+        </li>`;
+      }
+
       return `<li>
         <a href="${link.href}"
            class="nav__link${isActive ? ' nav__link--active' : ''}"
+           ${isActive ? 'aria-current="page"' : ''}>
+          ${link.label}
+        </a>
+      </li>`;
+    }).join('');
+
+    const mobileLinks = NAV_LINKS.map(link => {
+      const isActive = link.id === activePage;
+
+      if (link.isCta) {
+        return `<li>
+          <a href="${link.href}"
+             class="mobile-menu__link mobile-menu__link--donate">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>Support Our Work — Donate</span>
+          </a>
+        </li>`;
+      }
+
+      return `<li>
+        <a href="${link.href}"
+           class="mobile-menu__link${isActive ? ' mobile-menu__link--active' : ''}"
            ${isActive ? 'aria-current="page"' : ''}>
           ${link.label}
         </a>
@@ -66,7 +105,7 @@
     <!-- Desktop Nav -->
     <nav class="navbar__nav" aria-label="Primary navigation">
       <ul class="navbar__links" role="list">
-        ${links}
+        ${desktopLinks}
       </ul>
     </nav>
 
@@ -89,14 +128,7 @@
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
     <nav aria-label="Mobile navigation">
       <ul class="mobile-menu__links" role="list">
-        ${NAV_LINKS.map(link => `
-        <li>
-          <a href="${link.href}"
-             class="mobile-menu__link${link.id === activePage ? ' mobile-menu__link--active' : ''}"
-             ${link.id === activePage ? 'aria-current="page"' : ''}>
-            ${link.label}
-          </a>
-        </li>`).join('')}
+        ${mobileLinks}
       </ul>
     </nav>
   </div>
@@ -178,6 +210,33 @@
       ) {
         closeMenu();
       }
+    });
+
+    /* Smooth scrolling for hash links on the same page */
+    const isHomePage = activePage === 'home';
+    const allAnchors = root.querySelectorAll('a[href*="#"]');
+    allAnchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href) return;
+        const hashIdx = href.indexOf('#');
+        if (hashIdx === -1) return;
+        const hash = href.substring(hashIdx);
+
+        if (isHomePage) {
+          const target = document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            const navHeight = navbar.offsetHeight || 72;
+            const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
+            window.scrollTo({ top: targetPos, behavior: 'smooth' });
+            history.pushState(null, '', hash);
+            if (mobileMenu.classList.contains('is-open')) {
+              closeMenu();
+            }
+          }
+        }
+      });
     });
   }
 

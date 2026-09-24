@@ -33,7 +33,7 @@
     const galleryContainer = document.getElementById('gallery-preview-grid');
     if (galleryContainer && typeof GALLERY_DATA !== 'undefined') {
       const preview = GALLERY_DATA.slice(0, 6);
-      renderGalleryGrid(preview, galleryContainer, false);
+      renderGalleryGrid(preview, galleryContainer, true);
     }
 
     /* ── Smooth scroll for anchor links ───────── */

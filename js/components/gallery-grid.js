@@ -1,6 +1,6 @@
 /**
  * GALLERY GRID + LIGHTBOX — Nirvrithi Charitable Trust
- * Renders the gallery grid and a simple keyboard-accessible lightbox.
+ * Renders the gallery grid and a keyboard-accessible modal lightbox.
  */
 
 (function () {
@@ -29,22 +29,7 @@
               aria-label="View larger: ${item.alt}"
               aria-haspopup="dialog">
         <div class="gallery-item__img-wrap">
-          <!--
-            IMAGE PLACEHOLDER [Gallery Item ${i + 1}]
-            Event: ${item.event}
-            Date: ${item.dateDisplay}
-            Replace placeholder div with:
-            <img src="${item.src}" alt="${item.alt}" loading="lazy">
-            and remove the placeholder div below.
-          -->
-          <div class="gallery-item__placeholder" aria-hidden="true">
-            <div class="gallery-item__placeholder-inner">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-              </svg>
-              <span>${item.dateDisplay}</span>
-            </div>
-          </div>
+          <img src="${item.src}" alt="${item.alt}" class="gallery-item__img" loading="lazy">
           <div class="gallery-item__overlay" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
@@ -61,11 +46,11 @@
 
     // Wire up click/keyboard for lightbox
     container.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index), items));
+      item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index, 10), items));
       item.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openLightbox(parseInt(item.dataset.index), items);
+          openLightbox(parseInt(item.dataset.index, 10), items);
         }
       });
     });
@@ -106,13 +91,8 @@
           </svg>
         </button>
         <div class="lightbox__img-wrap">
-          <!--
-            LIGHTBOX IMAGE AREA
-            In Phase 2 when real images are added, this shows the full-size image.
-            Currently shows a styled placeholder.
-          -->
-          <div class="lightbox__placeholder" id="lightbox-placeholder" aria-hidden="true"></div>
-          <img class="lightbox__img" id="lightbox-img" src="" alt="" loading="eager" style="display:none;">
+          <div class="lightbox__placeholder" id="lightbox-placeholder" aria-hidden="true" style="display:none;"></div>
+          <img class="lightbox__img" id="lightbox-img" src="" alt="" loading="eager">
         </div>
         <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Next image" type="button">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -132,7 +112,7 @@
     el.querySelector('#lightbox-next').addEventListener('click', () => navigateLightbox(1));
 
     document.addEventListener('keydown', e => {
-      if (lightboxEl && !lightboxEl.getAttribute('aria-hidden') !== 'true') {
+      if (lightboxEl && lightboxEl.getAttribute('aria-hidden') === 'false') {
         if (e.key === 'Escape')     closeLightbox();
         if (e.key === 'ArrowLeft')  navigateLightbox(-1);
         if (e.key === 'ArrowRight') navigateLightbox(1);
@@ -170,27 +150,22 @@
     const caption     = lightboxEl.querySelector('#lightbox-caption');
     const counter     = lightboxEl.querySelector('#lightbox-counter');
 
-    // Try to load real image; if it fails, show placeholder
-    img.style.display = 'none';
-    placeholder.style.display = 'flex';
-    placeholder.innerHTML = `
-      <div class="lightbox__placeholder-content">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <p>${item.event}</p>
-        <span>${item.dateDisplay}</span>
-      </div>`;
-
+    placeholder.style.display = 'none';
+    img.style.display = 'block';
     img.src = item.src;
     img.alt = item.alt;
-    img.onload = () => {
-      placeholder.style.display = 'none';
-      img.style.display = 'block';
-    };
+
     img.onerror = () => {
       placeholder.style.display = 'flex';
       img.style.display = 'none';
+      placeholder.innerHTML = `
+        <div class="lightbox__placeholder-content">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <p>${item.event}</p>
+          <span>${item.dateDisplay}</span>
+        </div>`;
     };
 
     caption.innerHTML = `<strong>${item.caption}</strong><span>${item.event} · ${item.dateDisplay}</span>`;

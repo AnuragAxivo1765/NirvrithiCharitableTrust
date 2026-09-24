@@ -1,6 +1,6 @@
 /**
  * NEWS CARD COMPONENT — Nirvrithi Charitable Trust
- * Renders individual news/event cards.
+ * Renders individual news/event cards and accessible detail modal.
  */
 
 const CATEGORY_COLORS = {
@@ -20,20 +20,11 @@ function renderNewsCard(item) {
   const colorClass = CATEGORY_COLORS[item.category] || 'news';
 
   return `
-<article class="news-card" data-category="${item.category}" aria-label="${item.title}">
+<article class="news-card" data-category="${item.category}" data-id="${item.id}" tabindex="0" role="button" aria-label="View details: ${item.title}">
 
-  <!-- Featured Image / Placeholder -->
+  <!-- Featured Image -->
   <div class="news-card__img-wrap">
-    <div class="news-card__img-placeholder" aria-hidden="true">
-      <div class="news-card__img-icon">
-        ${getNewsIcon(item.category)}
-      </div>
-      <!--
-        IMAGE PLACEHOLDER
-        Replace with: <img src="${item.image}" alt="${item.title}" loading="lazy">
-        and remove this placeholder div.
-      -->
-    </div>
+    <img src="${item.image}" alt="${item.title}" class="news-card__img" loading="lazy">
     <span class="news-card__category news-card__category--${colorClass}">${item.category}</span>
   </div>
 
@@ -43,29 +34,105 @@ function renderNewsCard(item) {
     <h3 class="news-card__title">${item.title}</h3>
     <p class="news-card__excerpt">${item.excerpt}</p>
     <div class="news-card__footer">
-      <a href="#" class="news-card__read-more" aria-label="Read more about ${item.title}">
-        Read More
+      <button type="button" class="news-card__read-more" aria-label="Read full details about ${item.title}">
+        Read Details
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="5" y1="12" x2="19" y2="12"/>
           <polyline points="12 5 19 12 12 19"/>
         </svg>
-      </a>
+      </button>
     </div>
   </div>
 
 </article>`;
 }
 
-function getNewsIcon(category) {
-  const icons = {
-    'Event': `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-    'News':  `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
-    'Announcement': `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-    'Awareness': `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
-    'Community': `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-  };
-  return icons[category] || icons['News'];
+/* ── News Detail Modal ────────────────────────────── */
+
+let newsModalEl = null;
+
+function buildNewsModal() {
+  if (document.getElementById('news-modal')) {
+    newsModalEl = document.getElementById('news-modal');
+    return;
+  }
+
+  const el = document.createElement('div');
+  el.id = 'news-modal';
+  el.className = 'news-modal';
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.setAttribute('aria-label', 'News details');
+  el.setAttribute('aria-hidden', 'true');
+
+  el.innerHTML = `
+    <div class="news-modal__backdrop"></div>
+    <div class="news-modal__content">
+      <button class="news-modal__close" id="news-modal-close" aria-label="Close modal" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="news-modal__media">
+        <img class="news-modal__img" id="news-modal-img" src="" alt="" loading="eager">
+      </div>
+      <div class="news-modal__body">
+        <div class="news-modal__meta">
+          <span class="news-modal__category" id="news-modal-category"></span>
+          <time class="news-modal__date" id="news-modal-date"></time>
+        </div>
+        <h2 class="news-modal__title" id="news-modal-title"></h2>
+        <div class="news-modal__text" id="news-modal-text"></div>
+      </div>
+    </div>`;
+
+  document.body.appendChild(el);
+  newsModalEl = el;
+
+  el.querySelector('#news-modal-close').addEventListener('click', closeNewsModal);
+  el.querySelector('.news-modal__backdrop').addEventListener('click', closeNewsModal);
+
+  document.addEventListener('keydown', e => {
+    if (newsModalEl && newsModalEl.classList.contains('is-open')) {
+      if (e.key === 'Escape') closeNewsModal();
+    }
+  });
 }
+
+function openNewsModal(item) {
+  buildNewsModal();
+  if (!newsModalEl || !item) return;
+
+  const colorClass = CATEGORY_COLORS[item.category] || 'news';
+  const img        = newsModalEl.querySelector('#news-modal-img');
+  const catEl      = newsModalEl.querySelector('#news-modal-category');
+  const dateEl     = newsModalEl.querySelector('#news-modal-date');
+  const titleEl    = newsModalEl.querySelector('#news-modal-title');
+  const textEl     = newsModalEl.querySelector('#news-modal-text');
+
+  img.src = item.image;
+  img.alt = item.title;
+  catEl.textContent = item.category;
+  catEl.className = `news-modal__category news-card__category--${colorClass}`;
+  dateEl.textContent = item.dateDisplay;
+  dateEl.setAttribute('datetime', item.date);
+  titleEl.textContent = item.title;
+  textEl.innerHTML = `<p>${item.content}</p>`;
+
+  newsModalEl.setAttribute('aria-hidden', 'false');
+  newsModalEl.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  newsModalEl.querySelector('#news-modal-close').focus();
+}
+
+function closeNewsModal() {
+  if (!newsModalEl) return;
+  newsModalEl.setAttribute('aria-hidden', 'true');
+  newsModalEl.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+window.newsDetailModal = { open: openNewsModal, close: closeNewsModal };
 
 /**
  * Renders an array of news items into a container.
@@ -75,6 +142,7 @@ function getNewsIcon(category) {
  */
 function renderNewsGrid(items, container, animate = true) {
   if (!container) return;
+
   container.innerHTML = items.map((item, i) => {
     const card = renderNewsCard(item);
     if (animate) {
@@ -83,6 +151,21 @@ function renderNewsGrid(items, container, animate = true) {
     }
     return card;
   }).join('');
+
+  // Wire up click / keyboard handlers for modal
+  container.querySelectorAll('.news-card').forEach(card => {
+    const id = card.dataset.id;
+    const item = items.find(n => n.id === id);
+    if (!item) return;
+
+    card.addEventListener('click', () => openNewsModal(item));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openNewsModal(item);
+      }
+    });
+  });
 
   if (animate && window.initScrollAnimations) {
     window.initScrollAnimations();

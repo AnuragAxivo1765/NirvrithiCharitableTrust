@@ -28,8 +28,8 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/tokens.css" />
-  <link rel="stylesheet" href="css/components.css?v=2.0" />
-  <link rel="stylesheet" href="css/pages.css?v=2.0" />
+  <link rel="stylesheet" href="css/components.css?v=2.2" />
+  <link rel="stylesheet" href="css/pages.css?v=2.2" />
 </head>
 
 <body>
@@ -393,21 +393,62 @@
             </div>
           </div>
 
-          <!-- UPI Details -->
+          <!-- UPI Details & QR Code -->
           <div class="donation-box donation-box--upi">
-            <p class="donation-box__label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"
-                style="display:inline;vertical-align:middle;margin-right:6px;" aria-hidden="true">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                <line x1="12" y1="18" x2="12.01" y2="18" />
-              </svg>
-              UPI Payment
-            </p>
-            <div class="donation-box__rows">
-              <div class="donation-box__row">
-                <span class="donation-box__field">UPI ID</span>
-                <span class="donation-box__value">40698101104561@cnrb</span>
+            <div class="donation-box__header-row">
+              <p class="donation-box__label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  style="display:inline;vertical-align:middle;margin-right:6px;" aria-hidden="true">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  <line x1="12" y1="18" x2="12.01" y2="18" />
+                </svg>
+                UPI Payment &amp; QR Code
+              </p>
+              <span class="donation-box__pill">Scan &amp; Pay</span>
+            </div>
+
+            <div class="donation-box__upi-layout">
+              <!-- QR Code Container -->
+              <div class="donation-box__qr-frame">
+                <a href="assets/images/UPIQR.png" target="_blank" rel="noopener noreferrer" class="donation-box__qr-bg" title="Click to view QR code in full size">
+                  <img src="assets/images/UPIQR.png" alt="UPI QR Code - Nirvrithi Charitable Trust" class="donation-box__qr-img" width="140" height="140" loading="lazy" />
+                </a>
+                <span class="donation-box__qr-caption">Scan with any UPI App</span>
+              </div>
+
+              <!-- UPI Info -->
+              <div class="donation-box__upi-content">
+                <div class="donation-box__upi-item">
+                  <span class="donation-box__field">UPI ID</span>
+                  <div class="donation-box__upi-id-wrap">
+                    <span class="donation-box__value donation-box__upi-text" id="upi-id-value">40698101104561@cnrb</span>
+                    <button type="button" class="donation-box__copy-btn" id="copy-upi-btn" title="Copy UPI ID" aria-label="Copy UPI ID">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      <span class="copy-text">Copy</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="donation-box__upi-item">
+                  <span class="donation-box__field">Payee Name</span>
+                  <span class="donation-box__value" style="text-align:left;">Nirvrithi Charitable Trust</span>
+                </div>
+
+                <div class="donation-box__apps-row">
+                  <span class="donation-box__field" style="display:block;margin-bottom:4px;">Supported Apps</span>
+                  <div class="donation-box__app-badges">
+                    <span class="upi-app-badge">GPay</span>
+                    <span class="upi-app-badge">PhonePe</span>
+                    <span class="upi-app-badge">Paytm</span>
+                    <span class="upi-app-badge">BHIM</span>
+                  </div>
+                </div>
+
+                <a href="upi://pay?pa=40698101104561@cnrb&pn=Nirvrithi%20Charitable%20Trust&cu=INR" class="btn btn--sage btn--sm donation-box__mobile-upi-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Pay via UPI App
+                </a>
               </div>
             </div>
           </div>
@@ -554,7 +595,7 @@
   <script src="js/components/news-card.js?v=2.1"></script>
   <script src="js/components/gallery-grid.js?v=2.1"></script>
   <!-- Pages -->
-  <script src="js/pages/home.js?v=2.1"></script>
+  <script src="js/pages/home.js?v=2.2"></script>
 
 </body>
 

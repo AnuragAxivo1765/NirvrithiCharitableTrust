@@ -36,6 +36,43 @@
       renderGalleryGrid(preview, galleryContainer, true);
     }
 
+    /* ── UPI Copy Button ───────────────────────── */
+    const copyBtn = document.getElementById('copy-upi-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        const upiId = '40698101104561@cnrb';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(upiId).then(onCopied).catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+
+        function onCopied() {
+          const textSpan = copyBtn.querySelector('.copy-text');
+          if (textSpan) textSpan.textContent = 'Copied!';
+          copyBtn.classList.add('is-copied');
+          setTimeout(() => {
+            if (textSpan) textSpan.textContent = 'Copy';
+            copyBtn.classList.remove('is-copied');
+          }, 2000);
+        }
+
+        function fallbackCopy() {
+          try {
+            const tempInput = document.createElement('input');
+            tempInput.value = upiId;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            onCopied();
+          } catch (e) {
+            console.error('Clipboard copy failed', e);
+          }
+        }
+      });
+    }
+
     /* ── Smooth scroll for anchor links ───────── */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {

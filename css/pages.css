@@ -671,12 +671,203 @@ main {
   font-weight: var(--fw-regular);
 }
 
-/* UPI box */
-.donation-box--upi .donation-box__value {
-  font-size: var(--text-2xl);
-  color: white;
-  font-family: var(--font-display);
-  letter-spacing: var(--ls-tight);
+/* UPI box with QR code */
+.donation-box--upi {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(106, 142, 127, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.donation-box__header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.donation-box__header-row .donation-box__label {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.donation-box__pill {
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--clr-secondary-light);
+  background: rgba(106, 142, 127, 0.2);
+  border: 1px solid rgba(106, 142, 127, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.donation-box__upi-layout {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.donation-box__qr-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.donation-box__qr-bg {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.donation-box:hover .donation-box__qr-bg {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.donation-box__qr-img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+
+.donation-box__qr-caption {
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: var(--ls-wide);
+  text-align: center;
+}
+
+.donation-box__upi-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.donation-box__upi-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.donation-box__upi-id-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 6px var(--sp-3);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.donation-box__upi-text {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-bold);
+  color: #ffffff;
+  font-family: monospace;
+  letter-spacing: 0.3px;
+  word-break: break-all;
+}
+
+.donation-box__copy-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.donation-box__copy-btn:hover {
+  background: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+  color: #ffffff;
+}
+
+.donation-box__copy-btn.is-copied {
+  background: var(--clr-available);
+  border-color: var(--clr-available);
+  color: #ffffff;
+}
+
+.donation-box__app-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.upi-app-badge {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  letter-spacing: 0.2px;
+}
+
+.donation-box__mobile-upi-btn {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .donation-box__upi-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+  .donation-box__qr-frame {
+    margin-bottom: var(--sp-2);
+  }
+  .donation-box__upi-content {
+    align-items: center;
+  }
+  .donation-box__upi-item {
+    align-items: center;
+    width: 100%;
+  }
+  .donation-box__upi-id-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+  .donation-box__app-badges {
+    justify-content: center;
+  }
+  .donation-box__mobile-upi-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: var(--sp-2);
+  }
 }
 
 .donation__cta {

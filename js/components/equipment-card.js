@@ -29,14 +29,21 @@ function renderEquipmentCard(item) {
   const availLabel = item.available ? 'Available' : 'Currently Unavailable';
   const unitText   = item.available ? `${String(item.availableUnits).padStart(2, '0')} of ${item.totalUnits}` : '00';
 
+  const imgContent = item.image
+    ? `<img src="${item.image}" alt="${item.name} image from Magnific" class="equipment-card__img" loading="lazy" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
+    <div class="equipment-card__img-placeholder" aria-hidden="true" style="display:none;">
+      <div class="equipment-card__icon">${icon}</div>
+    </div>`
+    : `<div class="equipment-card__img-placeholder" aria-hidden="true">
+      <div class="equipment-card__icon">${icon}</div>
+    </div>`;
+
   return `
 <article class="equipment-card" data-category="${item.category}" data-available="${item.available ? 'true' : 'false'}" aria-label="${item.name}">
 
   <!-- Equipment Image / Placeholder -->
   <div class="equipment-card__img-wrap">
-    <div class="equipment-card__img-placeholder" aria-hidden="true">
-      <div class="equipment-card__icon">${icon}</div>
-    </div>
+    ${imgContent}
     <span class="equipment-card__category">${item.category}</span>
   </div>
 

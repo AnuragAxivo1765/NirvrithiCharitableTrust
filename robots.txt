@@ -1,0 +1,8 @@
+# robots.txt for Nirvrithi Charitable Trust — Pookoya Thangal Hospice
+# https://nirvrithitrust.org
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nirvrithitrust.org/sitemap.xml

@@ -1053,6 +1053,7 @@
   color: var(--clr-text-body);
   line-height: var(--lh-relaxed);
   margin-bottom: var(--sp-6);
+  white-space: pre-line;
 }
 
 .news-modal__footer {

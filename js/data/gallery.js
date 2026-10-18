@@ -246,6 +246,105 @@ const GALLERY_DATA = [
     dateDisplay: "5 June 2026",
     category: "Community",
     aspect: "landscape"
+  },
+  {
+    id: "gallery-22",
+    src: "assets/images/gallery/22.png",
+    alt: "Community members and women attendees gathered in open courtyard for PTH palliative care briefing",
+    caption: "Community Gathering & Palliative Briefing",
+    event: "Community Outreach",
+    date: "2026-09-10",
+    dateDisplay: "September 2026",
+    category: "Community",
+    aspect: "landscape"
+  },
+  {
+    id: "gallery-23",
+    src: "assets/images/gallery/23.jpeg",
+    alt: "Mannancherry Police House Officer N.C. Jose inaugurating Lifeliner emergency training session",
+    caption: "Police Inspector N.C. Jose Inaugurating Lifeliner Training",
+    event: "Lifeliner Emergency Training",
+    date: "2026-08-24",
+    dateDisplay: "24 August 2026",
+    category: "Awareness",
+    aspect: "portrait"
+  },
+  {
+    id: "gallery-24",
+    src: "assets/images/gallery/24.jpeg",
+    alt: "Trust officials and office bearers receiving medical hospital beds, cots, and oxygen concentrator boxes",
+    caption: "Hospital Beds & Medical Equipment Consignment Handover",
+    event: "Equipment Handover",
+    date: "2026-08-15",
+    dateDisplay: "15 August 2026",
+    category: "Equipment",
+    aspect: "portrait"
+  },
+  {
+    id: "gallery-25",
+    src: "assets/images/gallery/25.jpeg",
+    alt: "Women attendees seated at desks in Madrassa Hall for Mayyith care educational class",
+    caption: "Women Attendees at Mayyith Care Training Class",
+    event: "Mayyith Care Training",
+    date: "2026-09-21",
+    dateDisplay: "21 September 2026",
+    category: "Awareness",
+    aspect: "landscape"
+  },
+  {
+    id: "gallery-26",
+    src: "assets/images/gallery/26.jpeg",
+    alt: "Muhammad Muslih Baqavi conducting the lecture during women's Mayyith care class at Mannancherry Town Juma Masjid",
+    caption: "Muhammad Muslih Baqavi Delivering Mayyith Care Lecture",
+    event: "Mayyith Care Training",
+    date: "2026-09-21",
+    dateDisplay: "21 September 2026",
+    category: "Awareness",
+    aspect: "landscape"
+  },
+  {
+    id: "gallery-27",
+    src: "assets/images/gallery/27.jpeg",
+    alt: "Police House Officer N.C. Jose addressing participants at Lifeliner training camp with BMH medical team",
+    caption: "Lifeliner Emergency First-Aid Orientation Session",
+    event: "Lifeliner Emergency Training",
+    date: "2026-08-24",
+    dateDisplay: "24 August 2026",
+    category: "Awareness",
+    aspect: "portrait"
+  },
+  {
+    id: "gallery-28",
+    src: "assets/images/gallery/28.jpeg",
+    alt: "Community leader speaking at Lifeliner emergency training session at SNDP Hall, Chiyamveli",
+    caption: "Community Leader Addressing Lifeliner Training Camp",
+    event: "Lifeliner Emergency Training",
+    date: "2026-08-24",
+    dateDisplay: "24 August 2026",
+    category: "Event",
+    aspect: "landscape"
+  },
+  {
+    id: "gallery-29",
+    src: "assets/images/gallery/29.jpeg",
+    alt: "Grama Panchayat Member B. Nizar inaugurating the Grand Launch organizing committee meeting",
+    caption: "Grama Panchayat Member B. Nizar Inaugurating Committee Meeting",
+    event: "Grand Launch Committee Meet",
+    date: "2026-09-15",
+    dateDisplay: "September 2026",
+    category: "Event",
+    aspect: "landscape"
+  },
+  {
+    id: "gallery-30",
+    src: "assets/images/gallery/30.jpeg",
+    alt: "Large evening gathering of committee members and volunteers for PTH Mannancherry Grand Launch preparations",
+    caption: "Organizing Committee Preparatory Gathering at Chiyamveli",
+    event: "Grand Launch Committee Meet",
+    date: "2026-09-15",
+    dateDisplay: "September 2026",
+    category: "Event",
+    aspect: "landscape"
   }
 ];
 

@@ -24,8 +24,62 @@
 /* global EQUIPMENT_DATA */
 const EQUIPMENT_DATA = [
   /* ══════════════════════════════════════════════════════════
-     ACTIVE INVENTORY — AVAILABLE (Numbered Items)
+     ACTIVE INVENTORY
      ══════════════════════════════════════════════════════════ */
+  {
+    id: "wheelchair",
+    name: "Wheelchair",
+    description: "Standard foldable wheelchair for patients with limited mobility. Suitable for indoor and outdoor use.",
+    longDesc: "Sturdy, foldable wheelchair suitable for both indoor and outdoor use. Helps patients maintain mobility and independence during palliative care.",
+    image: "assets/images/equipment/Wheelchair.jpg",
+    creditMagnific: true,
+    category: "Mobility",
+    available: true,
+    availableUnits: 3,
+    totalUnits: 4,
+    featured: true,
+    sortOrder: 1
+  },
+  {
+    id: "walker",
+    name: "Patient Walker",
+    description: "Four-legged walking frame to assist patients with limited mobility and balance support.",
+    longDesc: "A sturdy four-legged walker that provides stability and support for patients with reduced mobility, preventing falls and encouraging safe movement.",
+    image: "assets/images/equipment/Walker.png",
+    creditMagnific: true,
+    category: "Mobility",
+    available: false,
+    availableUnits: 0,
+    totalUnits: 2,
+    featured: true,
+    sortOrder: 2
+  },
+  {
+    id: "fowler-bed-and-coat",
+    name: "Fowler Bed and Coat",
+    description: "Adjustable Fowler patient bed and cot for comfortable home-based palliative nursing.",
+    longDesc: "Hospital-grade Fowler bed and cot equipped with backrest elevation to support palliative nursing care and patient comfort at home.",
+    image: "assets/images/equipment/Semi_Fowler_Bed.png",
+    category: "Patient Care",
+    available: false,
+    availableUnits: 0,
+    totalUnits: 1,
+    featured: false,
+    sortOrder: 3
+  },
+  {
+    id: "walking-stick",
+    name: "Walking Stick",
+    description: "Height-adjustable walking stick with ergonomic handle and anti-slip rubber tip.",
+    longDesc: "Lightweight, height-adjustable supportive cane designed to provide stability, confidence, and gentle balance support for walking.",
+    image: null,
+    category: "Mobility",
+    available: true,
+    availableUnits: 2,
+    totalUnits: 2,
+    featured: false,
+    sortOrder: 4
+  },
   {
     id: "oxygen-concentrator",
     name: "Oxygen Concentrator",
@@ -34,11 +88,24 @@ const EQUIPMENT_DATA = [
     image: "assets/images/equipment/Oxygen_Concentrator.jpg",
     creditMagnific: true,
     category: "Respiratory",
-    available: true,
-    availableUnits: 1,
-    totalUnits: 1,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 2,
     featured: true,
-    sortOrder: 1
+    sortOrder: 5
+  },
+  {
+    id: "oxygen-cylinder",
+    name: "Oxygen Cylinder",
+    description: "Medical oxygen cylinder providing supplemental oxygen therapy for home-based respiratory care.",
+    longDesc: "High-grade medical oxygen cylinder equipped with regulator and flowmeter to provide emergency and continuous oxygen support for palliative patients.",
+    image: null,
+    category: "Respiratory",
+    available: false,
+    availableUnits: 0,
+    totalUnits: 1,
+    featured: false,
+    sortOrder: 6
   },
   {
     id: "air-bed",
@@ -49,24 +116,23 @@ const EQUIPMENT_DATA = [
     creditMagnific: true,
     category: "Patient Care",
     available: true,
-    availableUnits: 2,
-    totalUnits: 2,
+    availableUnits: 5,
+    totalUnits: 5,
     featured: true,
-    sortOrder: 2
+    sortOrder: 7
   },
   {
-    id: "wheelchair",
-    name: "Wheelchair",
-    description: "Standard foldable wheelchair for patients with limited mobility. Suitable for indoor and outdoor use.",
-    longDesc: "Sturdy, foldable wheelchair suitable for both indoor and outdoor use. Helps patients maintain mobility and independence during palliative care.",
-    image: "assets/images/equipment/Wheelchair.jpg",
-    creditMagnific: true,
-    category: "Mobility",
+    id: "nebulizer",
+    name: "Nebuliser",
+    description: "Converts liquid medication into a fine mist for inhalation. Used for respiratory management.",
+    longDesc: "An electrical nebuliser that turns liquid medication into a fine aerosol mist for easy inhalation, ideal for patients with respiratory conditions.",
+    image: "assets/images/equipment/Nebulizer.png",
+    category: "Respiratory",
     available: true,
     availableUnits: 2,
     totalUnits: 2,
     featured: true,
-    sortOrder: 3
+    sortOrder: 8
   },
   {
     id: "bp-monitor",
@@ -77,128 +143,75 @@ const EQUIPMENT_DATA = [
     creditMagnific: true,
     category: "Monitoring",
     available: true,
-    availableUnits: 2,
-    totalUnits: 2,
-    featured: true,
-    sortOrder: 4
-  },
-  {
-    id: "walker",
-    name: "Patient Walker",
-    description: "Four-legged walking frame to assist patients with limited mobility and balance support.",
-    longDesc: "A sturdy four-legged walker that provides stability and support for patients with reduced mobility, preventing falls and encouraging safe movement.",
-    image: "assets/images/equipment/Walker.png",
-    creditMagnific: true,
-    category: "Mobility",
-    available: true,
     availableUnits: 1,
     totalUnits: 1,
     featured: true,
-    sortOrder: 5
-  },
-  {
-    id: "nebulizer",
-    name: "Nebulizer",
-    description: "Converts liquid medication into a fine mist for inhalation. Used for respiratory management.",
-    longDesc: "An electrical nebulizer that turns liquid medication into a fine aerosol mist for easy inhalation, ideal for patients with respiratory conditions.",
-    image: "assets/images/equipment/Nebulizer.png",
-    category: "Respiratory",
-    available: true,
-    availableUnits: 1,
-    totalUnits: 1,
-    featured: true,
-    sortOrder: 6
-  },
-  {
-    id: "potty-chair",
-    name: "Potty Chair (Commode Chair)",
-    description: "Portable toilet chair with adjustable height for patients who cannot access the bathroom independently.",
-    longDesc: "A sturdy commode chair that provides a safe, accessible toilet facility for patients with limited mobility. Features adjustable height and a removable bucket for easy cleaning.",
-    image: "assets/images/equipment/Potty_Chair.png",
-    category: "Patient Care",
-    available: true,
-    availableUnits: 1,
-    totalUnits: 1,
-    featured: true,
-    sortOrder: 7
-  },
-  {
-    id: "back-support",
-    name: "Back Support (Bed Rest)",
-    description: "Adjustable back rest providing ergonomic back and neck support for patients resting or eating in bed.",
-    longDesc: "An adjustable multi-angle back support frame that allows bedridden patients to sit upright comfortably for meals, medication, or reading.",
-    image: "assets/images/equipment/Back_Support.png",
-    category: "Patient Care",
-    available: true,
-    availableUnits: 1,
-    totalUnits: 1,
-    featured: false,
-    sortOrder: 8
-  },
-  {
-    id: "semi-bed",
-    name: "Semi Bed",
-    description: "Semi-adjustable patient care bed for comfortable home-based palliative nursing.",
-    longDesc: "A semi-adjustable medical patient bed designed to support palliative care at home, making daily patient repositioning and nursing care manageable.",
-    image: "assets/images/equipment/Semi_Fowler_Bed.png",
-    category: "Patient Care",
-    available: true,
-    availableUnits: 1,
-    totalUnits: 1,
-    featured: false,
     sortOrder: 9
   },
 
   /* ══════════════════════════════════════════════════════════
-     ACTIVE INVENTORY — CURRENTLY UNAVAILABLE (Unnumbered Items)
+     DISABLED ITEMS (Not in Active Inventory)
      ══════════════════════════════════════════════════════════ */
+  {
+    id: "potty-chair",
+    name: "Potty Chair (Commode Chair)",
+    description: "Portable toilet chair with adjustable height for patients who cannot access the bathroom independently. Currently disabled / not in active inventory.",
+    longDesc: "A sturdy commode chair that provides a safe, accessible toilet facility for patients with limited mobility. Features adjustable height and a removable bucket for easy cleaning.",
+    image: "assets/images/equipment/Potty_Chair.png",
+    category: "Patient Care",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 20
+  },
+  {
+    id: "back-support",
+    name: "Back Support (Bed Rest)",
+    description: "Adjustable back rest providing ergonomic back and neck support for patients resting or eating in bed. Currently disabled / not in active inventory.",
+    longDesc: "An adjustable multi-angle back support frame that allows bedridden patients to sit upright comfortably for meals, medication, or reading.",
+    image: "assets/images/equipment/Back_Support.png",
+    category: "Patient Care",
+    disabled: true,
+    available: false,
+    availableUnits: 0,
+    totalUnits: 0,
+    featured: false,
+    sortOrder: 21
+  },
   {
     id: "semi-fowler-bed",
     name: "Semi Fowler Bed",
-    description: "Specialized multi-position hospital bed with backrest elevation for palliative nursing.",
+    description: "Specialized multi-position hospital bed with backrest elevation for palliative nursing. Currently disabled / superseded by Fowler Bed and Coat.",
     longDesc: "Hospital-grade semi-fowler bed equipped with smooth mechanical backrest adjustment, side safety rails, and durable mattress support.",
     image: "assets/images/equipment/Semi_Fowler_Bed.png",
     category: "Patient Care",
+    disabled: true,
     available: false,
     availableUnits: 0,
-    totalUnits: 1,
+    totalUnits: 0,
     featured: false,
-    sortOrder: 10
+    sortOrder: 22
   },
   {
     id: "semi-fowler-cot",
     name: "Semi Fowler Cot",
-    description: "Metal patient cot with reclining back elevation mechanism for home recovery.",
+    description: "Metal patient cot with reclining back elevation mechanism for home recovery. Currently disabled / superseded by Fowler Bed and Coat.",
     longDesc: "Sturdy metal palliative care cot with adjustable semi-fowler elevation, designed for compact home spaces and long-term comfort.",
     image: "assets/images/equipment/Semi_Fowler_Bed.png",
     category: "Patient Care",
+    disabled: true,
     available: false,
     availableUnits: 0,
-    totalUnits: 1,
+    totalUnits: 0,
     featured: false,
-    sortOrder: 11
+    sortOrder: 23
   },
-  {
-    id: "walking-stick",
-    name: "Walking Stick",
-    description: "Height-adjustable walking stick with ergonomic handle and anti-slip rubber tip.",
-    longDesc: "Lightweight, height-adjustable supportive cane designed to provide stability, confidence, and gentle balance support for walking.",
-    image: null,
-    category: "Mobility",
-    available: false,
-    availableUnits: 0,
-    totalUnits: 1,
-    featured: false,
-    sortOrder: 12
-  },
-
-  /* ══════════════════════════════════════════════════════════
-     DISABLED ITEMS (Not Mentioned in Current Inventory)
-     ══════════════════════════════════════════════════════════ */
   {
     id: "hospital-bed",
     name: "Standard Hospital Bed",
-    description: "Standard hospital bed. Currently disabled / superseded by Semi Fowler beds.",
+    description: "Standard hospital bed. Currently disabled / superseded by Fowler Bed and Coat.",
     longDesc: "Standard hospital-grade bed for home care.",
     image: null,
     category: "Patient Care",
@@ -207,7 +220,7 @@ const EQUIPMENT_DATA = [
     availableUnits: 0,
     totalUnits: 0,
     featured: false,
-    sortOrder: 20
+    sortOrder: 24
   },
   {
     id: "crutches",
@@ -221,7 +234,7 @@ const EQUIPMENT_DATA = [
     availableUnits: 0,
     totalUnits: 0,
     featured: false,
-    sortOrder: 21
+    sortOrder: 25
   },
   {
     id: "suction-machine",
@@ -235,7 +248,7 @@ const EQUIPMENT_DATA = [
     availableUnits: 0,
     totalUnits: 0,
     featured: false,
-    sortOrder: 22
+    sortOrder: 26
   },
   {
     id: "pulse-oximeter",
@@ -249,7 +262,7 @@ const EQUIPMENT_DATA = [
     availableUnits: 0,
     totalUnits: 0,
     featured: false,
-    sortOrder: 23
+    sortOrder: 27
   },
   {
     id: "wheelchair-ramp",
@@ -263,7 +276,7 @@ const EQUIPMENT_DATA = [
     availableUnits: 0,
     totalUnits: 0,
     featured: false,
-    sortOrder: 24
+    sortOrder: 28
   }
 ];
 

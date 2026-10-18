@@ -111,6 +111,30 @@
     el.querySelector('#lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
     el.querySelector('#lightbox-next').addEventListener('click', () => navigateLightbox(1));
 
+    /* Touch swipe navigation for mobile */
+    let touchStartX = 0;
+    let touchStartY = 0;
+    el.addEventListener('touchstart', e => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    el.addEventListener('touchend', e => {
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          if (deltaX < 0) {
+            navigateLightbox(1);
+          } else {
+            navigateLightbox(-1);
+          }
+        }
+      }
+    }, { passive: true });
+
     document.addEventListener('keydown', e => {
       if (lightboxEl && lightboxEl.getAttribute('aria-hidden') === 'false') {
         if (e.key === 'Escape')     closeLightbox();

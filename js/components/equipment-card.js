@@ -27,7 +27,7 @@ function renderEquipmentCard(item) {
   
   const availClass = item.available ? 'available' : 'unavailable';
   const availLabel = item.available ? 'Available' : 'Currently Unavailable';
-  const unitText   = item.available ? `${String(item.availableUnits).padStart(2, '0')} of ${item.totalUnits}` : '00';
+  const unitText   = `${String(item.availableUnits).padStart(2, '0')} of ${item.totalUnits}`;
 
   const altText = item.alt || (item.creditMagnific ? `${item.name} image from Magnific` : item.name);
 
@@ -60,7 +60,7 @@ function renderEquipmentCard(item) {
         <span class="availability-badge__dot" aria-hidden="true"></span>
         <span class="availability-badge__text">${availLabel}</span>
       </div>
-      <div class="equipment-card__units" aria-label="Units available: ${item.available ? item.availableUnits : 0}">
+      <div class="equipment-card__units" aria-label="Units available: ${item.availableUnits} of ${item.totalUnits}">
         <span class="equipment-card__units-label">Units Available</span>
         <span class="equipment-card__units-count">${unitText}</span>
       </div>

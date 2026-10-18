@@ -83,6 +83,9 @@ function buildNewsModal() {
         </div>
         <h2 class="news-modal__title" id="news-modal-title"></h2>
         <div class="news-modal__text" id="news-modal-text"></div>
+        <div class="news-modal__footer">
+          <button class="btn btn--secondary btn--sm" id="news-modal-bottom-close" type="button">Close</button>
+        </div>
       </div>
     </div>`;
 
@@ -90,6 +93,7 @@ function buildNewsModal() {
   newsModalEl = el;
 
   el.querySelector('#news-modal-close').addEventListener('click', closeNewsModal);
+  el.querySelector('#news-modal-bottom-close').addEventListener('click', closeNewsModal);
   el.querySelector('.news-modal__backdrop').addEventListener('click', closeNewsModal);
 
   document.addEventListener('keydown', e => {
